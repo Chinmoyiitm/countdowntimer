@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .countdown {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Countdown to 31st Dec 2024</h2>
+    <div id="timer" class="countdown"></div>
+
+    <script>
+      // Set the end date and time
+      var endDate = new Date('Dec 31, 2024 00:00:00').getTime();
+
+      // Update the countdown every second
+      var countdownTimer = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = endDate - now;
+
+        // Calculate days, hours, minutes, and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the timer div
+        document.getElementById("timer").innerHTML = days + "d " + hours + "h " + 
+          minutes + "m " + seconds + "s ";
+
+        // If the countdown is finished, display a message
+        if (distance < 0) {
+          clearInterval(countdownTimer);
+          document.getElementById("timer").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
